@@ -12,7 +12,7 @@ export class LoginComponent implements OnInit {
   error: any;
   constructor(public af: AngularFire, private router: Router) {
 
-      this.af.auth.subscribe(auth => { 
+    this.af.auth.subscribe(auth => { 
       if(auth) {
         this.router.navigateByUrl('/account/dashboard');
       }
@@ -100,6 +100,7 @@ export class LoginComponent implements OnInit {
       method: AuthMethods.Popup,
     }).then(
         (user) => {
+
         this.create(user);
 
       }).catch(
@@ -114,8 +115,9 @@ export class LoginComponent implements OnInit {
       method: AuthMethods.Popup,
     }).then(
         (user) => {
+
         this.create(user);
-        this.router.navigate(['/account/dashboard']);
+
       }).catch(
         (err) => {
         this.error = err;
@@ -153,8 +155,10 @@ export class LoginComponent implements OnInit {
         password: formSignup.value.password
       }).then(
         (user) => {
+
         this.create(user);
         this.router.navigate(['/account'])
+
       }).catch(
         (err) => {
         this.error = err;
