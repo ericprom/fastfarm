@@ -1,0 +1,63 @@
+<nav class="navbar navbar-default navbar-static-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" 
+        class="navbar-left navbar-toggle" 
+        data-toggle="collapse" 
+        data-target="#bs-main-navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <button *ngIf="isLoggedIn" 
+        type="button" 
+        class="navbar-toggle" 
+        data-toggle="collapse" 
+        data-target="#bs-mobile-navbar">
+        <img class="avatar-logo img-thumbnail"  *ngIf="profileImage" [src]="profileImage">
+      </button>
+      <a routerLink="/" class="navbar-brand">
+        <span style="font-size:26px;">
+        FAST<span style="font-weight:900;">FARM</span>
+        </span>
+      </a>
+    </div>
+    <div class="collapse navbar-collapse navbar-detector" id="bs-main-navbar">
+      <ul class="nav navbar-nav navbar-right">
+       
+        <li routerLinkActive="active"><a routerLink="/about">เกี่ยวกับเรา</a></li>
+        <li routerLinkActive="active"><a routerLink="/service">บริการทั้งหมด</a></li>
+        <li routerLinkActive="active"><a routerLink="/contact">ติดต่อเรา</a></li>
+        <li *ngIf="!isLoggedIn"><a routerLink="/system/login">เข้าสู่ระบบ</a></li>
+        <li *ngIf="!isLoggedIn"><a routerLink="/system/signup" >ลงทะเบียน</a></li>
+
+        <li *ngIf="isLoggedIn" class="dropdown hidden-xs">
+          <a href="#" 
+            class="dropdown-toggle" 
+            data-toggle="dropdown" 
+            role="button" 
+            aria-expanded="false" 
+            style="position:relative;">
+            <img class="avatar-logo img-thumbnail"  *ngIf="profileImage" [src]="profileImage" >
+          </a>
+
+          <ul class="dropdown-menu" role="menu">
+          <li><a routerLink="/account/dashboard"><i class="fa fa-btn fa-dashboard"></i> Dashboard</a></li>
+          <li><a (click)="logout()" class="set-cursor-pointer"><i class="fa fa-btn fa-sign-out"></i> ออกจากระบบ</a></li>
+          </ul>
+        </li>
+
+
+      </ul>
+    </div>
+    <div class="collapse nav-search navbar-detector" id="bs-mobile-navbar">
+      <div class="search_box">
+        <ul class="nav navbar-nav">
+          <li><a routerLink="/account/dashboard"><i class="fa fa-btn fa-dashboard"></i> Dashboard</a></li>
+          <li *ngIf="isLoggedIn"><a (click)="logout()"><i class="fa fa-btn fa-sign-out"></i> ออกจากระบบ</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</nav>

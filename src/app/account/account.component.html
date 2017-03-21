@@ -1,0 +1,86 @@
+<submenu-component></submenu-component>
+<div class="container">
+  <div class="white-bg-container page-margin-bottom min-height-500">
+    <h3>ข้อมูลสมาชิก FASTFARM</h3> 
+    <div class="row">
+      <div class="col-sm-2"></div>
+      <div class="col-sm-8">
+        <form #formProfile='ngForm' (ngSubmit)="onUpdateProfile(formProfile)" role="form" class="login-form">
+          <div class="form-group">
+            <label class="col-md-3 control-label" for="companyName">ชื่อบริษัท:</label>  
+            <div class="col-md-8">
+            <input 
+              type="text"   
+              name="companyName" 
+              class="form-control input-md"
+              placeholder="บริษัท ฟาสต์ ฟาร์ม จำกัด"
+              *ngIf="user"
+              [ngModel]='user.expose.company.name'>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-md-3 control-label" for="firstname">ชื่อ:</label>  
+            <div class="col-md-8">
+            <input 
+              type="text" 
+              name="firstname" 
+              class="form-control input-md" 
+              placeholder="เอริก" 
+              *ngIf="user"
+              [ngModel]='user.expose.name.first'>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-md-3 control-label" for="lastname">นามสกุล:</label>  
+            <div class="col-md-8">
+            <input 
+              type="text" 
+              name="lastname" 
+              class="form-control input-md" 
+              placeholder="พรอม" 
+              *ngIf="user"
+              [ngModel]='user.expose.name.last'>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-md-3 control-label" for="thaiId">เลขบัตรประชาชน:</label>  
+            <div class="col-md-8">
+            <input 
+              type="text" 
+              name="thaiId" 
+              class="form-control input-md" 
+              placeholder="1-4118-00091-XXX" 
+              *ngIf="user"
+              [ngModel]='user.idcard'>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-md-3 control-label" for="email">อีเมล์:</label>  
+            <div class="col-md-8">
+            <input 
+              type="text" 
+              name="email" 
+              class="form-control input-md" 
+              placeholder="eric@fastfarm.co" 
+              *ngIf="user"
+              [ngModel]='user.email' 
+              disabled>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-md-3 control-label" for="mobilePhone">เบอร์ติดต่อ:</label>  
+            <div class="col-md-8">
+            <input 
+              type="text" 
+              name="mobilePhone" 
+              class="form-control input-md" 
+              placeholder="088-066-69XX" 
+              *ngIf="user"
+              [ngModel]='user.phone'>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="col-sm-2"></div>
+  </div>
+</div>

@@ -1,0 +1,90 @@
+<div class="container">
+  <div class="margin-top-25 page-margin-bottom page-min-height">
+    <div class="row">
+      <div class="col-md-4 col-sm-6 col-xs-12 pull-right margin-top-25-small">
+        <div class="topic-title">
+          <span>บริการ<span style="font-weight:900;">ยอดนิยม</span></span>
+        </div>
+        <div class="row">
+          <div class="col-md-12 col-sm-12 col-xs-12" *ngFor="let item of topServices | async">
+            <div class="ribbon-wrapper" *ngIf="item.available==false">
+              <div class="ribbon">คิวเต็ม</div>
+            </div>
+            <article class="service-box">
+              <a href="">
+                <figure 
+                  class="service-image" 
+                  *ngIf="item"
+                  [style.background-image]="'url(' + item.image + ')'">
+                </figure>
+              </a>
+              <header class="service-title">
+                <a href="" *ngIf="item">
+                  <span *ngIf="item.sponsored==true">[sponsored]</span> {{item.title}}
+                </a>
+              </header>
+              <section class="shop-detail-section">
+                <div class="row">
+                  <div class="col-md-8 col-sm-8 col-xs-8">
+                    <div class="shop-title" *ngIf="item">{{item.shop}}</div>
+                    <div class="shop-rating">★ ★ ★ ★ ★ 64 รีวิว</div>
+                  </div>
+                  <div class="col-md-4 col-sm-4 col-xs-4">
+                    <div class="shop-title">ไร่ละ</div>
+                    <div class="service-cost"><strong>650 ฿</strong></div>
+                  </div>
+                </div>
+              </section>
+            </article>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12 col-sm-12 hidden-xs">
+             <help-center-component></help-center-component>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-8 col-sm-6 col-xs-12 margin-top-25-small">
+        <span class="topic-title">
+          ผู้ให้<span style="font-weight:900;">บริการ</span>
+        </span>
+        <div class="row">
+          <div class="col-md-6 col-sm-12 col-xs-12" *ngFor="let item of newServices | async">
+            <div class="ribbon-wrapper" *ngIf="item.available==false">
+              <div class="ribbon">คิวเต็ม</div>
+            </div>
+            <article class="service-box">
+              <a href="">
+                <figure 
+                  class="service-image" 
+                  *ngIf="item"
+                  [style.background-image]="'url(' + item.image + ')'">
+                </figure>
+              </a>
+              <header class="service-title">
+                <a href="" *ngIf="item">{{item.title}}</a>
+              </header>
+              <section class="shop-detail-section">
+                <div class="row">
+                  <div class="col-md-8 col-sm-8 col-xs-8">
+                    <div class="shop-title" *ngIf="item">{{item.shop}}</div>
+                    <div class="shop-rating">★ ★ ★ ★ ★ 64 รีวิว</div>
+                  </div>
+                  <div class="col-md-4 col-sm-4 col-xs-4">
+                    <div class="shop-title">ไร่ละ</div>
+                    <div class="service-cost"><strong>650 ฿</strong></div>
+                  </div>
+                </div>
+              </section>
+            </article>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-12 visible-xs">
+        <help-center-component></help-center-component>
+      </div>
+    </div>
+  </div>
+</div>
