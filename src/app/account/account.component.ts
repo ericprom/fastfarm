@@ -23,7 +23,6 @@ export class AccountComponent implements OnInit {
       if(auth) {
         this.subscription = UserProfile.retrieve(auth.uid).subscribe(profile => {
           this.user = profile;
-          console.log(profile);
         });
       }
       else {

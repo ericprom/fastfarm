@@ -9,8 +9,7 @@
             class="avatar img-circle img-thumbnail" 
             style="width:100px;height:100px;"  
             *ngIf="user" 
-            [src]="user.image" 
-            alt="{{ user.name.display }}" >
+            [src]="user.image">
           <h3 *ngIf="user">{{ user.name.display }}</h3>
           <a routerLink="/account/profile">Edit Profile</a>
         </div>

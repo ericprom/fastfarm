@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { AngularFireModule } from 'angularfire2';
+import {ToasterModule, ToasterService} from 'angular2-toaster';
 
 import { AuthGuard } from './auth.service';
 import { routes } from './app.routes';
@@ -53,6 +54,7 @@ import { ErrorComponent } from './error/error.component';
     FormsModule,
     HttpModule,
     AngularFireModule.initializeApp(config.firebaseConfig),
+    ToasterModule,
     routes
   ],
   providers: [

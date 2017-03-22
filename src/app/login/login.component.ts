@@ -1,20 +1,43 @@
-import { Component, OnInit, HostBinding } from '@angular/core';
+import { Component, HostBinding } from '@angular/core';
 import { AngularFire, AuthProviders, AuthMethods } from 'angularfire2';
 import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
+import { UserProfile } from '../services/user-profile.service';
+import {ToasterService} from 'angular2-toaster';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent{
 
-  error: any;
-  constructor(public af: AngularFire, private router: Router) {
+  private subscription: Subscription;
+  public user: any;
+  public error: any;
+
+  constructor(
+    public af: AngularFire, 
+    private router: Router,
+    public UserProfile: UserProfile,
+    public toasterService: ToasterService
+  ) {
 
     this.af.auth.subscribe(auth => { 
       if(auth) {
-        this.router.navigateByUrl('/account/dashboard');
+        this.subscription = UserProfile.retrieve(auth.uid).subscribe(profile => {
+          if(profile.$value === null){
+            this.create(auth);
+          }
+          else{
+            if(profile.newUser){
+              this.router.navigateByUrl('/account/profile');
+            }
+            else{
+              this.router.navigateByUrl('/account/dashboard');
+            }
+          }
+        });
       }
     });
 
@@ -98,39 +121,25 @@ export class LoginComponent implements OnInit {
     this.af.auth.login({
       provider: AuthProviders.Facebook,
       method: AuthMethods.Popup,
-    }).then(
-        (user) => {
-
-        this.create(user);
-
-      }).catch(
-        (err) => {
+    }).catch(
+      (err) => {
+        //this.toasterService.pop('warning', 'Login System', err.message);
         this.error = err;
-      })
+      });
   }
 
   loginGoogle() {
     this.af.auth.login({
       provider: AuthProviders.Google,
       method: AuthMethods.Popup,
-    }).then(
-        (user) => {
-
-        this.create(user);
-
-      }).catch(
+    }).catch(
         (err) => {
         this.error = err;
-      })
-  }
-
-
-  ngOnInit() {
+      });
   }
 
   onLogin(formLogin) {
     if(formLogin.valid) {
-      console.log(formLogin.value);
       this.af.auth.login({
         email: formLogin.value.email,
         password: formLogin.value.password
@@ -138,13 +147,10 @@ export class LoginComponent implements OnInit {
       {
         provider: AuthProviders.Password,
         method: AuthMethods.Password,
-      }).then(
-        (success) => {
-        this.router.navigate(['/account/dashboard']);
       }).catch(
         (err) => {
         this.error = err;
-      })
+      });
     }
   }
 
@@ -153,16 +159,10 @@ export class LoginComponent implements OnInit {
       this.af.auth.createUser({
         email: formSignup.value.email,
         password: formSignup.value.password
-      }).then(
-        (user) => {
-
-        this.create(user);
-        this.router.navigate(['/account'])
-
       }).catch(
         (err) => {
         this.error = err;
-      })
+      });
     }
   }
 
