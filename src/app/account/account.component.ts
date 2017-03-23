@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { AngularFire, FirebaseObjectObservable } from 'angularfire2';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
@@ -10,7 +10,7 @@ import { UserProfile } from '../services/user-profile.service';
   styleUrls: ['./account.component.css']
 })
 
-export class AccountComponent implements OnInit {
+export class AccountComponent {
 
   private subscription: Subscription;
   public user: any;
@@ -29,9 +29,9 @@ export class AccountComponent implements OnInit {
         this.user = {};
       }
     });
-
   }
+  update() { 
+    this.UserProfile.update(this.user)
+  };
 
-  ngOnInit() {
-  }
 }

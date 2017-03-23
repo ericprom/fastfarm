@@ -10,4 +10,14 @@ export class UserProfile {
     return this.af.database.object('users/'+path);    
   }
 
+  update (profile) {
+    if (profile.newUser) {
+        profile.newUser = false;
+    }
+    const users = this.af.database.object('/users/'+profile.uid);
+    delete profile.$key;
+    delete profile.$exists;
+    users.update(profile);
+  }
+
 }
