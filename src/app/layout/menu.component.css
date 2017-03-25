@@ -1,0 +1,17 @@
+#header-menu {
+  background: #fff;
+  border-bottom: 1px solid #e8e8e8;
+  min-width: 0;
+  position: relative;
+  padding: 10px 15px 10px;
+  margin-bottom: 15px;
+}
+
+.profile-image{
+  width:40px;
+  height:40px;
+  border-radius:50%;
+  padding: 0; 
+  background-color: #fff;
+  border: 3px solid #FF5A5F;
+}
